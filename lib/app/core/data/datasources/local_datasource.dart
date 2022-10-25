@@ -23,7 +23,7 @@ class LocalDatasource implements ILocalDatasource {
           heroes[i],
         ),
       );
-    } catch (_) {
+    } catch (e) {
       throw InternalException(
         message: 'Error on Recover Heroes Locally',
       );

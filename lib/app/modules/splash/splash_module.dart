@@ -8,6 +8,7 @@ class SplashModule extends Module {
   List<Bind> get binds => [
         Bind(
           (i) => SplashController(
+            getHeroesFromLocalUsecase: i(),
             getHeroesFromServerUsecase: i(),
             store: i(),
           ),

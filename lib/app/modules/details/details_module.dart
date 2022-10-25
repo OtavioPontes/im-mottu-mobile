@@ -11,7 +11,10 @@ class DetailsModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => DetailsPage(hero: args.data['hero']),
+          child: (context, args) => DetailsPage(
+            hero: args.data['hero'],
+            relatedHeroes: args.data['related'],
+          ),
         ),
       ];
 }

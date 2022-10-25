@@ -36,7 +36,36 @@ class RemoteDatasource implements IRemoteDatasource {
           'ts': date,
           'hash': crypto.md5.convert(bytes),
           if (startsWith != null) 'nameStartsWith': startsWith,
-          'offset': _apiConfig.offset,
+          'offset': startsWith != null ? 0 : _apiConfig.offset,
+        },
+      );
+      final data = result.data['data']['results'];
+      return List<CharModel>.generate(
+        data.length,
+        (index) {
+          return CharModel.fromMap(data[index]);
+        },
+      );
+    } catch (_) {
+      throw InternetException(
+        message: 'Server Error',
+      );
+    }
+  }
+
+  @override
+  Future<List<CharModel>> getRelatedHeroes({required int id}) async {
+    try {
+      final date = DateTime.now().millisecondsSinceEpoch.toString();
+      final bytes = utf8.encode(
+        date + ApiKey.privateKey + ApiKey.publicKey,
+      );
+      final result = await _dio.get(
+        URI.event(id: id),
+        queryParameters: {
+          'apikey': ApiKey.publicKey,
+          'ts': date,
+          'hash': crypto.md5.convert(bytes),
         },
       );
       final data = result.data['data']['results'];

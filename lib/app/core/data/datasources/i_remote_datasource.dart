@@ -5,4 +5,5 @@ abstract class IRemoteDatasource {
     String? startsWith,
     int? offset,
   });
+  Future<List<CharModel>> getRelatedHeroes({required int id});
 }

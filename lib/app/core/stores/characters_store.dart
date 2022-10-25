@@ -1,4 +1,3 @@
-import 'package:marvelapp/app/core/usecases/get_heroes_from_local_usecase.dart';
 import 'package:marvelapp/app/core/usecases/get_heroes_from_server_usecase.dart';
 import 'package:marvelapp/app/core/usecases/put_heroes_to_local_usecase.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +10,7 @@ class CharactersStore = CharactersStoreBase with _$CharactersStore;
 
 abstract class CharactersStoreBase with Store {
   final GetHeroesFromServerUsecase _getHeroesFromServerUsecase;
-  final GetHeroesFromLocalUsecase _getHeroesFromLocalUsecase;
+
   final PutHeroesToServerUsecase _putHeroesToServerUsecase;
 
   @observable
@@ -19,10 +18,8 @@ abstract class CharactersStoreBase with Store {
 
   CharactersStoreBase({
     required GetHeroesFromServerUsecase getHeroesFromServerUsecase,
-    required GetHeroesFromLocalUsecase getHeroesFromLocalUsecase,
     required PutHeroesToServerUsecase putHeroesToServerUsecase,
   })  : _getHeroesFromServerUsecase = getHeroesFromServerUsecase,
-        _getHeroesFromLocalUsecase = getHeroesFromLocalUsecase,
         _putHeroesToServerUsecase = putHeroesToServerUsecase;
 
   @action

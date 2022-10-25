@@ -40,6 +40,23 @@ class CharactersRepository implements ICharactersRepository {
   }
 
   @override
+  Future<Either<IFailure, List<Char>>> getRelatedHeroes({
+    required int id,
+  }) async {
+    try {
+      List<CharModel> listHeroes =
+          await _remoteDatasource.getRelatedHeroes(id: id);
+      return Right(listHeroes.map((e) => e.toEntity()).toList());
+    } on InternetException catch (_) {
+      return const Left(
+        InternalFailure(
+          message: 'Error on assembling heroes from server',
+        ),
+      );
+    }
+  }
+
+  @override
   Future<Either<IFailure, List<Char>>> getHeroesFromLocal() async {
     try {
       List<CharModel> listHeroes = await _localDatasource.getHeroes();
