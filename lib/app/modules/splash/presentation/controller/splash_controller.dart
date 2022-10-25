@@ -29,15 +29,16 @@ abstract class SplashControllerBase with Store {
   @action
   void setState(ControlState nextState) => state = nextState;
 
+  @action
   void pipeline() async {
     List<Char> heroes = [];
     setState(LoadingState());
 
     final localResult = await _getHeroesFromLocalUsecase(const NoParams());
-    heroes = localResult.fold(
+    localResult.fold(
       (l) => [],
       (heroes) {
-        return heroes;
+        heroes = heroes;
       },
     );
     if (heroes.isEmpty) {
