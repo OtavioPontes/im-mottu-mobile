@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../../domain/entities/char_entity.dart';
 
 class CharModel extends Char {
@@ -22,12 +24,41 @@ class CharModel extends Char {
     );
   }
 
+  factory CharModel.fromEntity({required Char heroe}) {
+    return CharModel(
+      name: heroe.name,
+      description: heroe.description,
+      imageUrl: heroe.imageUrl,
+      relatedHeroes: heroe.relatedHeroes,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'description': description,
+      'imageUrl': imageUrl,
+      'relatedHeroes': relatedHeroes,
+    };
+  }
+
   factory CharModel.fromMap(Map<String, dynamic> map) {
     return CharModel(
       name: map['name'],
       description: map['description'],
       imageUrl: map['thumbnail']['path'] + '.' + map['thumbnail']['extension'],
-      relatedHeroes: map['relatedHeroes'],
+      relatedHeroes: map['relatedHeroes'] != null
+          ? List<CharModel>.from(
+              map['relatedHeroes']?.map(
+                (x) => CharModel.fromMap(x),
+              ),
+            )
+          : null,
     );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory CharModel.fromJson(String source) =>
+      CharModel.fromMap(json.decode(source));
 }

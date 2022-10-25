@@ -28,12 +28,16 @@ class DetailsPage extends StatelessWidget {
             ),
             radius: 70.scale,
           ),
-          SizedBox(height: 16.scale),
-          Text(
-            hero.name,
-            style: theme.textTheme.headline2!.merge(
-              TextStyle(
-                color: theme.primaryColor,
+          SizedBox(height: 24.scale),
+          Center(
+            child: Text(
+              hero.name,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.headline2!.merge(
+                TextStyle(
+                  height: 1,
+                  color: theme.primaryColor,
+                ),
               ),
             ),
           ),

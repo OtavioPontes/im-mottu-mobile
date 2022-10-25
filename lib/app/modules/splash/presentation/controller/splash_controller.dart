@@ -1,7 +1,6 @@
 import 'package:marvelapp/app/core/domain/enums/control_state.dart';
 import 'package:marvelapp/app/core/stores/characters_store.dart';
 import 'package:marvelapp/app/core/usecases/get_heroes_from_server_usecase.dart';
-import 'package:marvelapp/app/core/usecases/i_usecase.dart';
 import 'package:mobx/mobx.dart';
 
 part 'splash_controller.g.dart';
@@ -26,7 +25,9 @@ abstract class SplashControllerBase with Store {
 
   void pipeline() async {
     setState(LoadingState());
-    final result = await _getHeroesFromServerUsecase(const NoParams());
+
+    final result =
+        await _getHeroesFromServerUsecase(ParamsGetHeroesFromServerUsecase());
     result.fold(
       (failure) {
         state = ErrorState();
