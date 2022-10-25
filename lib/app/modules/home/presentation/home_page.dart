@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.all(32.scale),
         child: Column(
+          mainAxisSize: MainAxisSize.max,
           children: [
             Text.rich(
               TextSpan(
@@ -86,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                         style: theme.textTheme.headline6,
                       ),
                       SizedBox(width: 4.scale),
-                      Icon(Icons.arrow_forward_ios),
+                      const Icon(Icons.arrow_forward_ios),
                     ],
                   ),
                 ),

@@ -49,6 +49,7 @@ class MarvelTextField extends StatelessWidget {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onPressed: () {
+                    controller.apiConfig.offset = 0;
                     controller.fetchHeroes(
                       startsWith: nameController.text.isEmpty
                           ? null
