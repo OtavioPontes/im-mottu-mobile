@@ -14,6 +14,10 @@ class GetHeroesFromLocalUsecase implements UseCase<List<Char>, NoParams> {
 
   @override
   Future<Either<IFailure, List<Char>>> call(params) async {
-    return await _repository.getHeroesFromLocal();
+    try {
+      return await _repository.getHeroesFromLocal();
+    } catch (e) {
+      return Left(InternalFailure());
+    }
   }
 }

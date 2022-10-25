@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mottu.marvel.marvelapp">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Marvel App"
         android:name="${applicationName}"
