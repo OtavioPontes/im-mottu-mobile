@@ -14,6 +14,7 @@ import 'package:marvelapp/app/modules/home/home_module.dart';
 import 'package:marvelapp/app/modules/splash/splash_module.dart';
 
 import 'app_controller.dart';
+import 'core/usecases/get_related_heroes_from_server_usecase.dart';
 import 'modules/details/details_module.dart';
 
 class AppModule extends Module {
@@ -30,13 +31,13 @@ class AppModule extends Module {
         Bind(
           (i) => CharactersStore(
             getHeroesFromServerUsecase: i(),
-            getHeroesFromLocalUsecase: i(),
             putHeroesToServerUsecase: i(),
           ),
         ),
         // Usecases
         Bind((i) => GetHeroesFromServerUsecase(repository: i())),
         Bind((i) => GetHeroesFromLocalUsecase(repository: i())),
+        Bind((i) => GetRelatedHeroesFromServerUsecase(repository: i())),
         Bind((i) => PutHeroesToServerUsecase(repository: i())),
         Bind((i) => DeleteHeroesFromLocalUsecase(repository: i())),
         // Repositories

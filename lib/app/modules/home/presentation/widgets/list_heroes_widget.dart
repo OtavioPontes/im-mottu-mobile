@@ -87,6 +87,9 @@ class _ListHeroesState extends State<ListHeroes>
                       DetailsModule.routeName,
                       arguments: {
                         'hero': char,
+                        'related': widget.controller.heroes
+                            .where((element) => element != char)
+                            .toList()
                       },
                     ),
                     child: Container(
@@ -101,9 +104,10 @@ class _ListHeroesState extends State<ListHeroes>
                         child: Row(
                           children: [
                             CircleAvatar(
-                              foregroundImage: NetworkImage(
+                              foregroundImage: Image.network(
                                 char.imageUrl,
-                              ),
+                                fit: BoxFit.contain,
+                              ).image,
                               radius: 50.scale,
                             ),
                             SizedBox(

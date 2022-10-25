@@ -13,4 +13,5 @@ abstract class ICharactersRepository {
     required List<Char> heroes,
   });
   Future<Either<IFailure, void>> deleteHeroes();
+  Future<Either<IFailure, List<Char>>> getRelatedHeroes({required int id});
 }
