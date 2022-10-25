@@ -6,27 +6,14 @@ import 'package:marvelapp/app/core/usecases/i_usecase.dart';
 
 import '../domain/entities/char_entity.dart';
 
-class GetHeroesFromServerUsecase
-    implements UseCase<List<Char>, ParamsGetHeroesFromServerUsecase> {
+class GetHeroesFromLocalUsecase implements UseCase<List<Char>, NoParams> {
   final ICharactersRepository _repository;
-  GetHeroesFromServerUsecase({
+  GetHeroesFromLocalUsecase({
     required ICharactersRepository repository,
   }) : _repository = repository;
 
   @override
   Future<Either<IFailure, List<Char>>> call(params) async {
-    return await _repository.getHeroes(
-      nameStartsWith: params.nameStartsWith,
-      offset: params.offset,
-    );
+    return await _repository.getHeroesFromLocal();
   }
-}
-
-class ParamsGetHeroesFromServerUsecase extends IParams {
-  final String? nameStartsWith;
-  final int? offset;
-  ParamsGetHeroesFromServerUsecase({
-    this.nameStartsWith,
-    this.offset,
-  });
 }

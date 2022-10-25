@@ -7,7 +7,7 @@ class HomeModule extends Module {
 
   @override
   List<Bind> get binds => [
-        Bind((i) => HomeController(store: i())),
+        Bind((i) => HomeController(store: i(), apiConfig: i())),
       ];
 
   @override
