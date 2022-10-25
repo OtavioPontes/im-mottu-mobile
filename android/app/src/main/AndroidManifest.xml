@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mottu.marvel.marvelapp">
    <application
-        android:label="marvelapp"
+        android:label="Marvel App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
